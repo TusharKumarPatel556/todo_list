@@ -11,7 +11,10 @@ app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 const { ErrorHandler, NotFound } = require("./middlewares/error/ErrorHandler");
+const userRouter = require("./routes/usersRouter");
 app.use("/task", taskRouter);
+app.use("/user", userRouter);
+
 // app.use(NotFound);
 // app.use(ErrorHandler);
 app.listen(5000, () => {
