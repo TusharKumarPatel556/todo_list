@@ -1,4 +1,5 @@
 const express = require("express");
+const isuserLoggedin = require("../middlewares/authentication/UserAuth");
 
 const {
   createTask,
@@ -10,8 +11,8 @@ const {
 
 const taskRouter = express.Router();
 
-taskRouter.post("/create-task", createTask);
-taskRouter.get("/all-task", getallTask);
+taskRouter.post("/create-task", isuserLoggedin, createTask);
+taskRouter.get("/all-task", isuserLoggedin, getallTask);
 taskRouter.get("/edit/:id", getaTask);
 taskRouter.put("/update-task/:id", updateaTask);
 taskRouter.delete("/delete-task/:id", deleteaTask);

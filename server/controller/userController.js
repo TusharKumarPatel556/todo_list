@@ -12,7 +12,6 @@ const userRegister = async (req, res) => {
 
     if (!userExists.rows.length) {
       const encryptPassword = await bcrypt.hash(password, 10);
-      console.log(encryptPassword);
 
       const newUser = await pool.query(
         "INSERT INTO users (name, email, mobile,password) VALUES($1, $2, $3,$4) RETURNING *",
@@ -27,13 +26,14 @@ const userRegister = async (req, res) => {
         );
 
         res.json({
-          pass: newUser.rows[0],
-          existuser: userExists.rows[0],
           token: jwtToken,
+          message: "success",
         });
       }
     } else {
-      throw new Error("user Exists");
+      res.json({
+        message: "user exists",
+      });
     }
   } catch (error) {
     res.status(500).json({
@@ -61,16 +61,17 @@ const userLogin = async (req, res) => {
         });
         res.status(200).json({
           token: jwtToken,
+          message: "success",
         });
-      } else {
-        throw new Error("Password did not matched");
       }
     } else {
-      throw new Error("User does not exist");
+      res.status(200).json({
+        message: "Wrong user Credentials",
+      });
     }
   } catch (error) {
     res.status(500).json({
-      message: "Wrong user credentials",
+      message: "Wrong user Credentials",
     });
   }
 };

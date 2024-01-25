@@ -3,9 +3,11 @@ const pool = require("../model/dbcon");
 const createTask = async (req, res) => {
   try {
     const { title, description, status } = req.body;
+    const { user_id } = req.body.user;
+    console.log(user_id);
     const newTask = await pool.query(
-      "INSERT INTO task (title, description, status) VALUES($1, $2, $3) RETURNING *",
-      [title, description, status]
+      "INSERT INTO tasks (user_id,title, description, status) VALUES($1, $2, $3,$4) RETURNING *",
+      [user_id, title, description, status]
     );
     console.log(req.body);
     res.status(200).json({
@@ -14,14 +16,17 @@ const createTask = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Task Creation Failed",
+      message: error.message,
     });
   }
 };
 //Get All tasks Api
 const getallTask = async (req, res) => {
   try {
-    const allTasks = await pool.query("SELECT * FROM task");
+    const { user_id } = req.body.user;
+    const allTasks = await pool.query("SELECT * FROM tasks WHERE user_id=$1 ", [
+      user_id,
+    ]);
 
     res.status(200).json({
       tasks: allTasks.rows,
@@ -37,7 +42,7 @@ const getallTask = async (req, res) => {
 const getaTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const editTask = await pool.query("SELECT * FROM task WHERE task_id=$1", [
+    const editTask = await pool.query("SELECT * FROM tasks WHERE task_id=$1", [
       id,
     ]);
     res.status(200).json({
@@ -54,8 +59,8 @@ const getaTask = async (req, res) => {
 const updateaTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const task = await pool.query("SELECT * FROM task WHERE task_id=$1", [id]);
-
+    const task = await pool.query("SELECT * FROM tasks WHERE task_id=$1", [id]);
+    console.log(task);
     const prev_title = task.rows[0].title;
     const prev_description = task.rows[0].description;
     const prev_status = task.rows[0].status;
@@ -66,7 +71,7 @@ const updateaTask = async (req, res) => {
       status = prev_status,
     } = req.body;
     const updateTask = await pool.query(
-      "UPDATE task SET title=$1, description=$2, status=$3 WHERE task_id=$4 RETURNING *",
+      "UPDATE tasks SET title=$1, description=$2, status=$3 WHERE task_id=$4 RETURNING *",
       [title, description, status, id]
     );
     res.status(200).json({
@@ -75,7 +80,7 @@ const updateaTask = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "failed to  Update task",
+      message: error.message,
     });
   }
 };
@@ -83,7 +88,7 @@ const updateaTask = async (req, res) => {
 const deleteaTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteTask = await pool.query("DELETE FROM task WHERE task_id=$1", [
+    const deleteTask = await pool.query("DELETE FROM tasks WHERE task_id=$1", [
       id,
     ]);
     res.status(200).json({
