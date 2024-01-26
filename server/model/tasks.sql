@@ -16,6 +16,6 @@ CREATE TABLE tasks (
     title VARCHAR(200),
     description VARCHAR(500),
     status BOOLEAN,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
 );

@@ -2,14 +2,16 @@ const pool = require("../model/dbcon");
 //create a task Api
 const createTask = async (req, res) => {
   try {
-    const { title, description, status } = req.body;
+    const { title, description, status = false } = req.body;
     const { user_id } = req.body.user;
-    console.log(user_id);
+    const created_at = new Date();
+    const updated_at = new Date();
+    console.log(created_at);
     const newTask = await pool.query(
-      "INSERT INTO tasks (user_id,title, description, status) VALUES($1, $2, $3,$4) RETURNING *",
-      [user_id, title, description, status]
+      "INSERT INTO tasks (user_id,title, description, status,created_at,updated_at) VALUES($1, $2, $3,$4,$5,$6) RETURNING *",
+      [user_id, title, description, status, created_at, updated_at]
     );
-    console.log(req.body);
+
     res.status(200).json({
       task: newTask.rows[0],
       message: "success",
@@ -24,9 +26,10 @@ const createTask = async (req, res) => {
 const getallTask = async (req, res) => {
   try {
     const { user_id } = req.body.user;
-    const allTasks = await pool.query("SELECT * FROM tasks WHERE user_id=$1 ", [
-      user_id,
-    ]);
+    const allTasks = await pool.query(
+      "SELECT * FROM tasks WHERE user_id=$1  ORDER BY task_id ",
+      [user_id]
+    );
 
     res.status(200).json({
       tasks: allTasks.rows,
@@ -60,7 +63,7 @@ const updateaTask = async (req, res) => {
   try {
     const { id } = req.params;
     const task = await pool.query("SELECT * FROM tasks WHERE task_id=$1", [id]);
-    console.log(task);
+
     const prev_title = task.rows[0].title;
     const prev_description = task.rows[0].description;
     const prev_status = task.rows[0].status;
@@ -69,7 +72,7 @@ const updateaTask = async (req, res) => {
       title = prev_title,
       description = prev_description,
       status = prev_status,
-    } = req.body;
+    } = req.query;
     const updateTask = await pool.query(
       "UPDATE tasks SET title=$1, description=$2, status=$3 WHERE task_id=$4 RETURNING *",
       [title, description, status, id]

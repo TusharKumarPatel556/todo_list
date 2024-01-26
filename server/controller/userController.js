@@ -57,7 +57,7 @@ const userLogin = async (req, res) => {
       );
       if (passwordMatched) {
         const jwtToken = await jwt.sign(user.rows[0], process.env.JWT_SECRET, {
-          expiresIn: 7200,
+          expiresIn: 72000,
         });
         res.status(200).json({
           token: jwtToken,
