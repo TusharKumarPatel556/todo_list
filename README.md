@@ -69,6 +69,8 @@ Step-3 (CONNECTING NODEJS  TO POSTGRESSQL DATABASE)-----------------
                        PORT=5000
                        JWT_SECRET="Merge-Alpha6578"
               -and then  restart the server.
+              -All task related apis are protected  Apis so user mest be logged in before accessing those features.
+              -
 
 
    (-------------------------------CLIENT SITE CONFIGURATIONS------------------------------------)
@@ -81,6 +83,14 @@ Step-3 (CONNECTING NODEJS  TO POSTGRESSQL DATABASE)-----------------
              -If ".env" file is absent in client folder then create a .env file add add the below code
                      VITE_REACT_APP_BASE_URL= http://localhost:5000
               -and then  restart the server.
+
+
+
+   (-------------------------------HOW TO NAVIGATE ------------------------------------)
+   -ON RUNNING YOU WILL LAND ON THE LOGIN PAGE .
+   -YOU WILL HAVE TO CREATE AN ACCOUNT SO FIRST NAVIGATE  TO SignUp PAGE .
+   -ON SUCCESFUL SIGNUP  YOU WILL BE NAVIGATED TO THE HOME PAGE WHERE YOU CAN ADD TASK AND SEE THE LIST OF TASKS 
+              
               
 
    (-------------------------------ADDITIONAL FEATURES I WOULD LIKE TO ADD------------------------------------)
