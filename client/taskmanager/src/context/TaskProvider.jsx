@@ -5,10 +5,13 @@ export const TaskContext = createContext();
 
 const TaskProvider = ({ children }) => {
   const [taskadded, setTaskadded] = useState(false);
+  const [loggedIn, setLoggedin] = useState(false);
 
   const initialState = {
     taskadded,
     setTaskadded,
+    loggedIn,
+    setLoggedin,
   };
 
   return (

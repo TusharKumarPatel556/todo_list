@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "../../Components/Login/Login";
 import styles from "./LoginPage.module.css";
+import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   return (
@@ -8,7 +9,9 @@ const LoginPage = () => {
       <Login />
 
       <div className={styles.createAcount}>
-        <h5>Create Your account</h5>
+        <h5>
+          <NavLink to="/signup">Create Your account</NavLink>
+        </h5>
       </div>
     </div>
   );

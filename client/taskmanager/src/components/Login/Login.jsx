@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import styles from "./Login.module.css";
 import ErrorMsg from "../../utils/ErrorMsg/ErrorMsg";
 import { LoginUser } from "../../api/UserApi/UserApi";
+import { TaskContext } from "../../context/TaskProvider";
 
 const Login = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
+  const { loggedIn, setLoggedin } = useContext(TaskContext);
 
   const InitialValues = {
     email: "",
@@ -26,6 +28,11 @@ const Login = () => {
     const response = await LoginUser(values);
     console.log(response);
     setMessage(response);
+
+    setTimeout(() => {
+      setLoggedin(!loggedIn);
+    }, 1000);
+
     if (response === "success") {
       navigate("/home");
     }

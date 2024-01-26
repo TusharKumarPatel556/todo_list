@@ -33,6 +33,7 @@ const CreateTask = () => {
 
   return (
     <div>
+      <h2>Add Task</h2>
       <div>
         <Formik
           initialValues={InitialValues}
@@ -72,7 +73,7 @@ const CreateTask = () => {
                 variant="text"
                 type="submit"
               >
-                Continue
+                Add Task
               </button>
             </div>
 

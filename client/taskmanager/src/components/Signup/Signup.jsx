@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./Signup.module.css";
 import ErrorMsg from "../../utils/ErrorMsg/ErrorMsg";
 import { Register } from "../../api/UserApi/UserApi";
+import { TaskContext } from "../../context/TaskProvider";
 
 const Signup = () => {
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const { loggedIn, setLoggedin } = useContext(TaskContext);
 
   const InitialValues = {
     name: "",
@@ -25,6 +29,12 @@ const Signup = () => {
   const OnSubmit = async (values) => {
     const res = await Register(values);
     setMessage(res);
+    setTimeout(() => {
+      setLoggedin(!loggedIn);
+    }, 800);
+    if (res === "success") {
+      navigate("/home");
+    }
   };
 
   return (
@@ -91,7 +101,7 @@ const Signup = () => {
 
             <div>
               <button
-                className={styles.continueBtn}
+                className={`${styles.continueBtn} p-3`}
                 variant="text"
                 type="submit"
               >

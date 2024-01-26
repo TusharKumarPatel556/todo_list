@@ -11,6 +11,7 @@ const HomePage = () => {
           <CreateTask />
         </div>
         <div className="col-lg-8">
+          <h2 className="fs-2">Task List</h2>
           <ListTasks />
         </div>
       </div>
