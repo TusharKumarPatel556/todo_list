@@ -6,7 +6,7 @@ const createTask = async (req, res) => {
     const { user_id } = req.body.user;
     const created_at = new Date();
     const updated_at = new Date();
-    console.log(created_at);
+
     const newTask = await pool.query(
       "INSERT INTO tasks (user_id,title, description, status,created_at,updated_at) VALUES($1, $2, $3,$4,$5,$6) RETURNING *",
       [user_id, title, description, status, created_at, updated_at]
