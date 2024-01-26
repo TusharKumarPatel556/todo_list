@@ -30,7 +30,7 @@ const Login = () => {
     setMessage(response);
 
     setTimeout(() => {
-      setLoggedin(!loggedIn);
+      setLoggedin(true);
     }, 1000);
 
     if (response === "success") {

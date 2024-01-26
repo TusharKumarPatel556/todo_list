@@ -9,9 +9,10 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
     setTimeout(() => {
       setLoggedin(!loggedIn);
-      navigate("/");
+      navigate("/", { replace: false });
     }, 800);
   };
 

@@ -63,9 +63,13 @@ const userLogin = async (req, res) => {
           token: jwtToken,
           message: "success",
         });
+      } else {
+        res.status(500).json({
+          message: "Wrong user Credentials",
+        });
       }
     } else {
-      res.status(200).json({
+      res.status(500).json({
         message: "Wrong user Credentials",
       });
     }

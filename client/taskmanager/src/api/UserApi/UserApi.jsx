@@ -33,6 +33,7 @@ export const LoginUser = async (userData) => {
     });
 
     localStorage.setItem("token", response.data.token);
+    console.log(response.data);
     return response.data.message;
   } catch (err) {
     return err.message;
