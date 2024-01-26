@@ -1,4 +1,16 @@
+technologiees used 
+-psql (PostgreSQL) 16.1
+-node js v18.18.0
+-React js
+-Express Js
+
+
+
+
+
 -The Application contains a client folder and a server folder.
+
+
    (-------------------------------DATABSE CONFIGURATIONS------------------------------------)
 Step-1 ( INSTALLING DATABASE CONFIGURATION)---------------------
        - Install  PostgreSQL in to the system .
@@ -11,7 +23,7 @@ Step-2 (CREATING DATABASE AND TABLE)-----------------
          - Run Command "CREATE DATABASE todolist;". To create the Database.
          - Run command "\c todolist;"  Enter in to the database .
          -Then create User table using Below mentioned query
-                  CREATE TABLE users (
+                "  CREATE TABLE users (
                       user_id SERIAL PRIMARY KEY,
                       name VARCHAR(500),
                       email VARCHAR(500),
@@ -19,9 +31,9 @@ Step-2 (CREATING DATABASE AND TABLE)-----------------
                       password VARCHAR(500),
                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                  );
+                  );  "
          -After creating user table  create tasks table using below mentioned query
-                  CREATE TABLE tasks (
+             "     CREATE TABLE tasks (
                       task_id SERIAL PRIMARY KEY,
                       user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
                       title VARCHAR(200),
@@ -30,7 +42,7 @@ Step-2 (CREATING DATABASE AND TABLE)-----------------
                       created_at TIMESTAMP,
                       updated_at TIMESTAMP
                   );
-         
+         "
 Step-3 (CONNECTING NODEJS  TO POSTGRESSQL DATABASE)-----------------
                -Goto  folder  "model" in server and Open "dbcon.js" file .You will be able to see the code mentioned below.
                       const Pool = require("pg").Pool;
@@ -70,6 +82,12 @@ Step-3 (CONNECTING NODEJS  TO POSTGRESSQL DATABASE)-----------------
                      VITE_REACT_APP_BASE_URL= http://localhost:5000
               -and then  restart the server.
               
+
+   (-------------------------------ADDITIONAL FEATURES I WOULD LIKE TO ADD------------------------------------)
+ - I wold like to add
+ - filters  to select  task based on date, and pending or completed.
+ - Sorting Options in alphabetical order .
+ - A Search bar to Search for a perticular task using title.
 
 
                       
