@@ -1,4 +1,16 @@
+technologiees used 
+-psql (PostgreSQL) 16.1
+-node js v18.18.0
+-React js
+-Express Js
+
+
+
+
+
 -The Application contains a client folder and a server folder.
+
+
    (-------------------------------DATABSE CONFIGURATIONS------------------------------------)
 Step-1 ( INSTALLING DATABASE CONFIGURATION)---------------------
        - Install  PostgreSQL in to the system .
