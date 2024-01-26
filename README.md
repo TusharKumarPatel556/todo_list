@@ -71,6 +71,12 @@ Step-3 (CONNECTING NODEJS  TO POSTGRESSQL DATABASE)-----------------
               -and then  restart the server.
               
 
+   (-------------------------------ADDITIONAL FEATURES I WOULD LIKE TO ADD------------------------------------)
+ - I wold like to add
+ - filters  to select  task based on date, and pending or completed.
+ - Sorting Options in alphabetical order .
+ - A Search bar to Search for a perticular task using title.
+
 
                       
             
