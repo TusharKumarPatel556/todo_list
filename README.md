@@ -11,7 +11,7 @@ Step-2 (CREATING DATABASE AND TABLE)-----------------
          - Run Command "CREATE DATABASE todolist;". To create the Database.
          - Run command "\c todolist;"  Enter in to the database .
          -Then create User table using Below mentioned query
-                  CREATE TABLE users (
+                "  CREATE TABLE users (
                       user_id SERIAL PRIMARY KEY,
                       name VARCHAR(500),
                       email VARCHAR(500),
@@ -19,9 +19,9 @@ Step-2 (CREATING DATABASE AND TABLE)-----------------
                       password VARCHAR(500),
                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                  );
+                  );  "
          -After creating user table  create tasks table using below mentioned query
-                  CREATE TABLE tasks (
+             "     CREATE TABLE tasks (
                       task_id SERIAL PRIMARY KEY,
                       user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
                       title VARCHAR(200),
@@ -30,7 +30,7 @@ Step-2 (CREATING DATABASE AND TABLE)-----------------
                       created_at TIMESTAMP,
                       updated_at TIMESTAMP
                   );
-         
+         "
 Step-3 (CONNECTING NODEJS  TO POSTGRESSQL DATABASE)-----------------
                -Goto  folder  "model" in server and Open "dbcon.js" file .You will be able to see the code mentioned below.
                       const Pool = require("pg").Pool;
