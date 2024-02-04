@@ -11,16 +11,18 @@ Step-1 ( INSTALLING DATABASE CONFIGURATION)--------------------- - Install Postg
 
 Step-2 (CREATING DATABASE AND TABLE)-----------------
 -All these commands are available inside folder modelin queries.sql file. path to the folder todo_list-->server-->model-->queries.sql - Run Command "CREATE DATABASE todolist;". To create the Database. - Run command "\c todolist;" Enter in to the database .
--Then create User table using Below mentioned query
-" CREATE TABLE users (
-user_id SERIAL PRIMARY KEY,
-name VARCHAR(500),
-email VARCHAR(500),
-mobile VARCHAR(500),
-password VARCHAR(500),
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-); "
+
+
+                  -Then create User table using Below mentioned query
+                  " CREATE TABLE users (
+                  user_id SERIAL PRIMARY KEY,
+                  name VARCHAR(500),
+                  email VARCHAR(500),
+                  mobile VARCHAR(500),
+                  password VARCHAR(500),
+                  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                  ); "
 
          -After creating user table  create tasks table using below mentioned query
              "     CREATE TABLE tasks (
